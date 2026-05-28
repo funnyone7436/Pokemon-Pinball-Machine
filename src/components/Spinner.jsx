@@ -5,6 +5,7 @@ import { useTexture } from '@react-three/drei'
 import * as THREE from 'three'
 
 export default function Spinner({ position, angle = 0, tilt = 0, textureUrl, addScore }) {
+  const BASE = import.meta.env.BASE_URL;
   const plateRef = useRef()
   const matRef1 = useRef()
   const matRef2 = useRef()
@@ -16,7 +17,7 @@ export default function Spinner({ position, angle = 0, tilt = 0, textureUrl, add
   const speed = useRef(0)
   const isSpinning = useRef(false)
 
-  const texture = useTexture(textureUrl || '/r3f/images/edges/f0.png')
+  const texture = useTexture(textureUrl || `${BASE}r3f/images/edges/f0.png`)
   texture.colorSpace = THREE.SRGBColorSpace
 
   const handleHit = () => {

@@ -9,9 +9,15 @@ import CameraController from './components/CameraController'
 import * as THREE from 'three'
 import * as Tone from 'tone' 
 
+const BASE = import.meta.env.BASE_URL;
+
 const BALL_MODELS = [
-  '/glb/PokeBall_Body.glb', '/glb/GreatBall.glb', '/glb/UltraBall.glb',
-  '/glb/MasterBall.glb', '/glb/PremierBall.glb', '/glb/LuxuryBall.glb'
+  `${BASE}glb/PokeBall_Body.glb`, 
+  `${BASE}glb/GreatBall.glb`, 
+  `${BASE}glb/UltraBall.glb`,
+  `${BASE}glb/MasterBall.glb`, 
+  `${BASE}glb/PremierBall.glb`, 
+  `${BASE}glb/LuxuryBall.glb`
 ];
 
 const BDAY_SONG = [

@@ -269,13 +269,17 @@ function CentralRing() {
 // ==========================================
 // ⚡ PIKACHU BUMPER GAUNTLET (Lowered Pattern)
 // ==========================================
+// ==========================================
+// ⚡ PIKACHU BUMPER GAUNTLET (Lowered Pattern)
+// ==========================================
 function BumperGauntlet({ addScore }) { 
+  // 1. BASE must be defined here, at the top level of the component!
+  const BASE = import.meta.env.BASE_URL;
+  
   const targets = useMemo(() => { 
     const items = []; 
     let pikaId = 1; 
 
-    // 🛠️ THE FIX: Lowered all the Y values significantly!
-    // Now they are clustered near the bottom hole, leaving the top view totally clear.
     const rings = [
       { y: 1.0, count: 5, angleOffset: 0 },             
       { y: 2.2, count: 6, angleOffset: Math.PI / 6 },   
@@ -287,7 +291,8 @@ function BumperGauntlet({ addScore }) {
         const angle = (i / ring.count) * (Math.PI * 2) + ring.angleOffset;
         const r = getRadius(ring.y);
 
-        const imgUrl = `/r3f/images/Pok_${pikaId}.png`;
+        // 2. The URL must be built inside the loop where pikaId exists!
+        const imgUrl = `${BASE}r3f/images/Pok_${pikaId}.png`;
         pikaId = pikaId >= 22 ? 1 : pikaId + 1;
 
         items.push({ 
@@ -299,7 +304,7 @@ function BumperGauntlet({ addScore }) {
     });
 
     return items; 
-  }, []); 
+  }, [BASE]); // 3. BASE is passed into the dependencies here safely.
 
   return (
     <group>
@@ -319,23 +324,28 @@ function BumperGauntlet({ addScore }) {
 // ==========================================
 // 💫 POKEMON SPINNER RING (Giant Edition!)
 // ==========================================
+// ==========================================
+// 💫 POKEMON SPINNER RING (Giant Edition!)
+// ==========================================
 function PokemonSpinnerGauntlet({ addScore, count = 12 }) {
+  // 1. BASE must be defined outside the useMemo!
+  const BASE = import.meta.env.BASE_URL;
+	
   const targets = useMemo(() => {
     const items = [];
     const y = 5.6; 
-
+    
+    // 2. We use BASE here safely.
     const images = [
-      '/r3f/images/edges/f0.png', 
-      '/r3f/images/edges/f1.png', 
-      '/r3f/images/edges/f2.png'  
+      `${BASE}r3f/images/edges/f0.png`, 
+      `${BASE}r3f/images/edges/f1.png`, 
+      `${BASE}r3f/images/edges/f2.png`  
     ];
 
     for (let i = 0; i < count; i++) {
       const angle = (i / count) * Math.PI * 2;
       const r = getRadius(y);
 
-      // 🛠️ THE FIX: Because the spinner is so much bigger now, 
-      // we offset the radius by (r - 0.4) instead of 0.2 to prevent scraping the wall!
       const pos = [Math.cos(angle) * (r - 0.4), y, Math.sin(angle) * (r - 0.4)];
 
       items.push({
@@ -346,7 +356,7 @@ function PokemonSpinnerGauntlet({ addScore, count = 12 }) {
       });
     }
     return items;
-  }, [count]); 
+  }, [count, BASE]); // 3. BASE safely goes in the dependency array here.
 
   return (
     <group>
