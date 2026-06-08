@@ -192,6 +192,22 @@ export default function AppUI({
         
       </div>
 
+    {/* 🔐 SOURCE CODE LINK */}
+      <div style={{
+        position: 'absolute',
+        bottom: 10,
+        right: 10,
+        backgroundColor: 'rgba(0,0,0,0.6)',
+        color: 'white',
+        padding: '6px 10px',
+        borderRadius: '8px',
+        fontSize: '14px',
+        zIndex: 1000,
+        pointerEvents: 'auto'
+      }}>
+        <div>🔐 No worries, just fun!</div>
+        <a href="https://github.com/funnyone7436/Pokemon-Pinball-Machine" target="_blank" style={{ color: '#61dafb' }}>🔍 View full source</a>
+      </div>
     </div>
   )
 }
