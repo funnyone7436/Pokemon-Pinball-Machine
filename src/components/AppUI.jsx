@@ -123,7 +123,7 @@ export default function AppUI({
   }
 
   // ==========================================
-  // 🕹️ IN-GAME HUD (Balanced Layout)
+  // 🕹️ IN-GAME HUD
   // ==========================================
   return (
     <div style={{ position: 'absolute', top: 0, left: 0, width: '100vw', height: '100vh', pointerEvents: 'none', zIndex: 10 }}>
@@ -134,16 +134,12 @@ export default function AppUI({
         color: '#00ffcc', fontFamily: '"Courier New", Courier, monospace',
         pointerEvents: 'auto', display: 'flex', flexDirection: 'column', alignItems: 'flex-start'
       }}>
-        
         <div style={{ fontSize: '28px', fontWeight: 'bold', textShadow: '0px 0px 15px #00ffcc, 0px 0px 5px #ffffff', marginBottom: '15px' }}>
           SCORE: {score.toLocaleString()}
         </div>
 
         <button 
-          onClick={(e) => {
-            onToggleCamera();
-            e.target.blur(); 
-          }}
+          onClick={(e) => { onToggleCamera(); e.target.blur(); }}
           style={{
             background: 'rgba(0, 255, 204, 0.1)', border: '2px solid #00ffcc', color: '#00ffcc',
             borderRadius: '6px', padding: '8px 16px', fontSize: '14px', cursor: 'pointer',
@@ -163,11 +159,8 @@ export default function AppUI({
         fontFamily: '"Courier New", Courier, monospace',
         pointerEvents: 'none', display: 'flex', flexDirection: 'column', alignItems: 'flex-end'
       }}>
-        
-		{/* TIMER */}
         <div style={{
-          fontSize: '28px', // 🛠️ CHANGED: Matched to the Score's 28px
-          fontWeight: 'bold', // 🛠️ CHANGED: Matched to the Score's bold weight
+          fontSize: '28px', fontWeight: 'bold', 
           color: timeLeft <= 10 ? '#ff0055' : '#ffffff', 
           textShadow: timeLeft <= 10 ? '0px 0px 20px #ff0055' : '0px 0px 10px #ffffff',
           transition: 'color 0.3s ease, text-shadow 0.3s ease',
@@ -176,11 +169,10 @@ export default function AppUI({
           {formatTime(timeLeft)}
         </div>
 
-        {/* SMALLER JUMP DETECT */}
         <div style={{ height: '40px' }}>
           {isJumping && (
              <div style={{
-               color: '#ff0055', fontSize: '20px', fontWeight: '900', // 🛠️ SHRANK FROM 36px to 20px
+               color: '#ff0055', fontSize: '20px', fontWeight: '900', 
                textShadow: '0px 0px 15px #ff0055, 0px 0px 5px #ffffff',
                animation: 'pulse 0.1s infinite alternate',
                textAlign: 'right'
@@ -189,10 +181,9 @@ export default function AppUI({
              </div>
           )}
         </div>
-        
       </div>
 
-    {/* 🔐 SOURCE CODE LINK */}
+      {/* 🔐 SOURCE CODE LINK */}
       <div style={{
         position: 'absolute',
         bottom: 10,
@@ -208,6 +199,7 @@ export default function AppUI({
         <div>🔐 No worries, just fun!</div>
         <a href="https://github.com/funnyone7436/Pokemon-Pinball-Machine" target="_blank" style={{ color: '#61dafb' }}>🔍 View full source</a>
       </div>
+
     </div>
   )
 }
